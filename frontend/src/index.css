@@ -18,9 +18,10 @@ header .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px;
+  gap: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 header a {
   color: #333;
