@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useProductsContext } from '../hooks/useProductsContext';
 
 // components
 import ProductDetails from '../components/ProductDetails';
 
 const Store = () => {
+  const {products, dispatch} = useProductsContext();
   const params = useParams();
   const {category} = params;
-  const [products, setProducts] = useState(null);
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -15,12 +16,12 @@ const Store = () => {
       const json = await response.json();
 
       if (response.ok) {
-        setProducts(json);
+        dispatch({type: 'SET_PRODUCTS', payload: json});
       };
     };
 
     fetchProducts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='store'>
